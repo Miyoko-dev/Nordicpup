@@ -1,21 +1,20 @@
 import type { APIRoute } from 'astro';
 
+export const prerender = false;
+
 const LIST_ID = '3edfa6f6-22cf-11f1-b3f0-3bda711e24fc';
+const API_KEY = 'eo_ca40f8c218ec500da0322ef8027f47adf656c6d9a1b56493102e40ab1c28a0b8';
 
-export const POST: APIRoute = async ({ request, locals }) => {
-  const API_KEY = (locals.runtime as any).env.EMAILOCTOPUS_KEY;
-
+export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
     const email = body.email?.trim();
-
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
       return new Response(JSON.stringify({
         error: true,
         message: "Ange en giltig e‑postadress."
       }), { status: 400 });
     }
-
     const res = await fetch(`https://emailoctopus.com/api/1.6/lists/${LIST_ID}/contacts`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -25,28 +24,23 @@ export const POST: APIRoute = async ({ request, locals }) => {
         status: 'subscribed',
       }),
     });
-
     const data = await res.json();
-
     if (data?.error?.code === 'MEMBER_EXISTS_WITH_EMAIL_ADDRESS') {
       return new Response(JSON.stringify({
         error: false,
         message: "Du är redan prenumerant!"
       }), { status: 200 });
     }
-
     if (!res.ok) {
       return new Response(JSON.stringify({
         error: true,
         message: data?.error?.message || "Något gick fel med registreringen."
       }), { status: res.status });
     }
-
     return new Response(JSON.stringify({
       success: true,
       message: "Tack! Du är nu prenumerant 🎉"
     }), { status: 200 });
-
   } catch (err) {
     console.error(err);
     return new Response(JSON.stringify({
