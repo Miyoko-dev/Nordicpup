@@ -38,8 +38,8 @@ document.getElementById("notify-form").addEventListener("submit", async (e) => {
   const successMsg = document.getElementById("notify-success");
   const errorMsg   = document.getElementById("notify-error");
 
-  errorMsg?.classList.add("hidden");
-  successMsg?.classList.add("hidden");
+  errorMsg.classList.add("hidden");
+  successMsg.classList.add("hidden");
 
   const email = emailInput.value.trim();
 
@@ -47,7 +47,7 @@ document.getElementById("notify-form").addEventListener("submit", async (e) => {
     const res = await fetch('/api/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email })
     });
 
     const data = await res.json();
