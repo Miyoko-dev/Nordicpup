@@ -61,20 +61,13 @@ import Layout from '../layouts/Layout.astro';
 
         <div class="w-full max-w-md mb-8">
             <p class="text-white/60 text-sm mb-4">Få reda på när vi lanserar</p>
-                <form 
-                  action="https://eocampaign1.com/form/7a7dcc30-22cd-11f1-b654-ed622bfd9b01" 
-                  method="post" 
-                  target="_blank"
-                  class="flex flex-col sm:flex-row gap-3"
-                >
+                <form name="notify" class="flex flex-col sm:flex-row gap-3">
                   <input
                     type="email"
-                    name="email_address"
                     placeholder="Din e-postadress"
                     required
                     class="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition"
                   />
-                
                   <button type="submit" class="btn">Prenumerera</button>
                 </form>
         </div>
@@ -87,3 +80,40 @@ import Layout from '../layouts/Layout.astro';
         </div>
     </section>
 </Layout>
+<script async src="https://eocampaign1.com/form/7a7dcc30-22cd-11f1-b654-ed622bfd9b01.js" data-form="7a7dcc30-22cd-11f1-b654-ed622bfd9b01"></script>
+<style>
+  .eo-form-container {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    pointer-events: none;
+  }
+</style>
+<script>
+window.addEventListener("load", function () {
+  const yourForm = document.querySelector("form[name='notify']");
+  
+  // Sometimes the script takes a moment to inject the hidden form
+  setTimeout(() => {
+    const eoForm = document.querySelector(".eo-form-container form");
+    const eoEmail = document.querySelector(".eo-form-container input[type='email']");
+    
+    if (!yourForm || !eoForm || !eoEmail) {
+      console.error("EmailOctopus form not loaded yet");
+      return;
+    }
+
+    yourForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = yourForm.querySelector("input[type='email']").value;
+
+      eoEmail.value = email;
+      eoForm.submit();
+
+      // UX: success message
+      yourForm.reset();
+      alert("Tack! Kolla din mail 📩");
+    });
+  }, 1000); // delay to let EmailOctopus script load
+});
+</script>
