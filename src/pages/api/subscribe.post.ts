@@ -1,9 +1,10 @@
 import type { APIRoute } from 'astro';
 
 const LIST_ID = '3edfa6f6-22cf-11f1-b3f0-3bda711e24fc';
-const API_KEY = import.meta.env.EMAILOCTOPUS_KEY; // Set in Cloudflare Pages environment
 
-export const post: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
+  const API_KEY = (locals.runtime as any).env.EMAILOCTOPUS_KEY;
+
   try {
     const body = await request.json();
     const email = body.email?.trim();
@@ -15,13 +16,11 @@ export const post: APIRoute = async ({ request }) => {
       }), { status: 400 });
     }
 
-    const res = await fetch(`https://api.emailoctopus.com/lists/${LIST_ID}/contacts`, {
+    const res = await fetch(`https://emailoctopus.com/api/1.6/lists/${LIST_ID}/contacts`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${API_KEY}`
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
+        api_key: API_KEY,
         email_address: email,
         status: 'subscribed',
       }),
@@ -29,14 +28,7 @@ export const post: APIRoute = async ({ request }) => {
 
     const data = await res.json();
 
-    if (res.status === 404) {
-      return new Response(JSON.stringify({
-        error: true,
-        message: "Listan hittades inte. Kontrollera LIST_ID."
-      }), { status: 404 });
-    }
-
-    if (data?.type === "https://emailoctopus.com/api-documentation/v2#already-exists") {
+    if (data?.error?.code === 'MEMBER_EXISTS_WITH_EMAIL_ADDRESS') {
       return new Response(JSON.stringify({
         error: false,
         message: "Du är redan prenumerant!"
@@ -46,7 +38,7 @@ export const post: APIRoute = async ({ request }) => {
     if (!res.ok) {
       return new Response(JSON.stringify({
         error: true,
-        message: data.detail || "Något gick fel med registreringen."
+        message: data?.error?.message || "Något gick fel med registreringen."
       }), { status: res.status });
     }
 
