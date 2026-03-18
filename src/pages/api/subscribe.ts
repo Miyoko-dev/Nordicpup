@@ -3,7 +3,7 @@ import type { APIRoute } from 'astro';
 export const prerender = false;
 
 const LIST_ID = '3edfa6f6-22cf-11f1-b3f0-3bda711e24fc';
-const API_KEY = 'eo_ca40f8c218ec500da0322ef8027f47adf656c6d9a1b56493102e40ab1c28a0b8';
+const API_KEY = 'eo_d2fa87b69116a8f3ea353a7f452781168587656ea3761ed314a8ed2c5c2c74a1';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
