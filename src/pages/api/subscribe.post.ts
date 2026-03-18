@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 
 const LIST_ID = '3edfa6f6-22cf-11f1-b3f0-3bda711e24fc';
-const API_KEY = 'eo_ca40f8c218ec500da0322ef8027f47adf656c6d9a1b56493102e40ab1c28a0b8';
+const API_KEY = import.meta.env.EMAILOCTOPUS_KEY;
 
 export const post: APIRoute = async ({ request }) => {
   try {
