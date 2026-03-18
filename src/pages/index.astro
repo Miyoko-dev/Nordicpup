@@ -32,28 +32,38 @@ import Layout from '../layouts/Layout.astro';
 <script>
 document.getElementById("notify-form").addEventListener("submit", async (e) => {
   e.preventDefault();
+
   const emailInput = e.target.querySelector("input[name='email']");
-  const email = emailInput.value;
   const successMsg = document.getElementById("notify-success");
+  const errorMsg   = document.getElementById("notify-error");
+
+  errorMsg?.classList.add("hidden");
+  successMsg?.classList.add("hidden");
+
+  const email = emailInput.value.trim();
 
   try {
-    const response = await fetch('/api/subscribe', {
+    const res = await fetch('/api/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email }),
     });
 
-    if (response.ok) {
-      emailInput.value = "";
-      successMsg.classList.remove("hidden");
+    const data = await res.json();
+
+    if (data.error) {
+      errorMsg.textContent = data.message;
+      errorMsg.classList.remove("hidden");
     } else {
-      const error = await response.json();
-      console.error(error);
-      alert("Något gick fel, försök igen.");
+      successMsg.textContent = data.message;
+      successMsg.classList.remove("hidden");
+      emailInput.value = "";
     }
+
   } catch (err) {
     console.error(err);
-    alert("Något gick fel, försök igen.");
+    errorMsg.textContent = "Något gick fel, försök igen.";
+    errorMsg.classList.remove("hidden");
   }
 });
 </script>
