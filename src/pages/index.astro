@@ -12,53 +12,51 @@ import Layout from '../layouts/Layout.astro';
       Skandinavisk design för din bästa vän. Stilrena och hållbara hundaccessoarer. Sele, koppel, halsband och flugor med mer. Vi kommer erbjuda unika lyxprodukter som för tillfället inte finns i Skandinavien.
     </p>
       
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-16 w-full max-w-2xl">
-            <div class="product-card">
-                <div class="product-icon">
-                    <!-- Harness icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
-                        <path d="M12 3C8 3 5 6 5 10v2l-2 3v1h18v-1l-2-3v-2c0-4-3-7-7-7z"/>
-                        <path d="M8 16v2a4 4 0 0 0 8 0v-2"/>
-                        <path d="M12 3v7"/>
-                        <path d="M8 10h8"/>
-                    </svg>
-                </div>
-                <span class="product-label">Sele</span>
-            </div>
-            <div class="product-card">
-                <div class="product-icon">
-                    <!-- Leash icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
-                        <path d="M18 4a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
-                        <path d="M18 8c0 3-2 5-4 7s-4 5-4 5"/>
-                        <path d="M7 22a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
-                    </svg>
-                </div>
-                <span class="product-label">Koppel</span>
-            </div>
-            <div class="product-card">
-                <div class="product-icon">
-                    <!-- Collar icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
-                        <ellipse cx="12" cy="12" rx="10" ry="5"/>
-                        <ellipse cx="12" cy="12" rx="7" ry="3"/>
-                        <circle cx="12" cy="17" r="1" fill="currentColor"/>
-                    </svg>
-                </div>
-                <span class="product-label">Halsband</span>
-            </div>
-            <div class="product-card">
-                <div class="product-icon">
-                    <!-- Bow tie icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
-                        <path d="M12 12L4 6v12l8-6zM12 12l8-6v12l-8-6z"/>
-                        <circle cx="12" cy="12" r="2" fill="currentColor"/>
-                    </svg>
-                </div>
-                <span class="product-label">Fluga</span>
-            </div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-16 w-full max-w-2xl">
+
+    <div class="product-card">
+        <div class="product-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
+                <path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/>
+            </svg>
         </div>
-    <div class="w-full max-w-md mb-8">
+        <span class="product-label">Kvalitativa produkter</span>
+    </div>
+
+    <div class="product-card">
+        <div class="product-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+        </div>
+        <span class="product-label">Nära kundsupport</span>
+    </div>
+
+    <div class="product-card">
+        <div class="product-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+            </svg>
+        </div>
+        <span class="product-label">Snabb leverans</span>
+    </div>
+
+    <div class="product-card">
+        <div class="product-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
+                <rect x="1" y="3" width="15" height="13" rx="2"/>
+                <path d="M16 8h4l3 5v4h-7V8z"/>
+                <circle cx="5.5" cy="18.5" r="2.5"/>
+                <circle cx="18.5" cy="18.5" r="2.5"/>
+            </svg>
+        </div>
+        <span class="product-label">Gratis frakt</span>
+    </div>
+
+</div>       
+
+<div class="w-full max-w-md mb-8">
       <p class="text-white/60 text-sm mb-4">Få reda på när vi lanserar</p>
       <form id="notify-form" class="flex flex-col sm:flex-row gap-3">
         <input
