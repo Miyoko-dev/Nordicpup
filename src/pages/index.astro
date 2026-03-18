@@ -61,17 +61,22 @@ import Layout from '../layouts/Layout.astro';
 
         <div class="w-full max-w-md mb-8">
             <p class="text-white/60 text-sm mb-4">Få reda på när vi lanserar</p>
-            <form name="notify" method="POST" data-netlify="true" class="flex flex-col sm:flex-row gap-3">
-                <input type="hidden" name="form-name" value="notify" />
-                <input
+                <form 
+                  action="https://eocampaign1.com/form/7a7dcc30-22cd-11f1-b654-ed622bfd9b01/subscribe" 
+                  method="post" 
+                  target="_blank"
+                  class="flex flex-col sm:flex-row gap-3"
+                >
+                  <input
                     type="email"
-                    name="email"
+                    name="email_address"
                     placeholder="Din e-postadress"
                     required
                     class="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition"
-                />
-                <button type="submit" class="btn">Prenumerera</button>
-            </form>
+                  />
+                
+                  <button type="submit" class="btn">Prenumerera</button>
+                </form>
         </div>
 
         <div class="flex items-center gap-2 text-white/40 text-sm">
