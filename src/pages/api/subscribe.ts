@@ -21,7 +21,7 @@ export const POST: APIRoute = async ({ request }) => {
       body: JSON.stringify({
         api_key: API_KEY,
         email_address: email,
-        status: 'subscribed',
+        status: 'SUBSCRIBED',
       }),
     });
     const data = await res.json();
