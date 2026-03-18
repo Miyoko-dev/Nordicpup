@@ -13,10 +13,11 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="sv">
     <head>
         <meta charset="UTF-8" />
         <title>{title}</title>
+        <meta name="description" content="Nordicpup - Skandinavisk design för din bästa vän. Stilrena och hållbara hundaccessoarer — sele, koppel, halsband och flugor." />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -26,7 +27,7 @@ const { title } = Astro.props;
         <div class="flex flex-col min-h-screen px-6 bg-noise sm:px-12">
             <div class="flex flex-col w-full max-w-5xl mx-auto grow">
                 <Header />
-                <main class="grow"><slot /></main>
+                <main class="grow flex items-center justify-center w-full"><slot /></main>
                 <Footer />
             </div>
         </div>

@@ -2,9 +2,10 @@
 
 @theme {
     --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --color-primary: #f67280;
-    --color-primary-content: #101828;
-    --color-complementary: #355c7d;
+    --color-primary: #c4a882;
+    --color-primary-content: #1a1a1a;
+    --color-complementary: #1c2a3a;
+    --color-accent: #c4a882;
     --background-image-noise: linear-gradient(
             to bottom,
             color-mix(in oklab, var(--color-gray-950) 0%, transparent),
@@ -23,43 +24,17 @@
     }
 
     a:not(.btn) {
-        @apply underline transition hover:opacity-80;
-    }
-
-    pre {
-        @apply p-6 overflow-x-auto rounded-lg;
-    }
-
-    :not(pre) > code {
-        @apply px-1 py-0.5 font-mono rounded bg-gray-900 text-primary;
-        font-size: 0.9em;
+        @apply transition hover:opacity-80;
+        text-decoration: none;
     }
 }
 
 @layer components {
-    .markdown {
-        > * {
-            @apply my-6;
-        }
-
-        :where(h1, h2) {
-            @apply mt-12 mb-6;
-        }
-
-        > :first-child {
-            @apply mt-0;
-        }
-
-        > :last-child {
-            @apply mb-0;
-        }
-    }
-
     .btn {
         @apply inline-flex items-center justify-center gap-2 bg-primary text-primary-content cursor-pointer text-center font-semibold no-underline transition-colors;
-        padding: var(--btn-py, 0.875rem) var(--btn-px, 1.25rem);
-        font-size: var(--btn-font-size, 0.875rem);
-        border-radius: var(--btn-border-radius, 0.25rem);
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+        border-radius: 0.5rem;
 
         &:hover {
             @apply bg-primary/85;
@@ -70,9 +45,20 @@
         }
     }
 
-    .btn-lg {
-        --btn-font-size: 1.125rem;
-        --btn-px: 1.5rem;
-        --btn-py: 1.125rem;
+    .product-card {
+        @apply flex flex-col items-center gap-3 p-6 rounded-xl bg-white/5 border border-white/10 transition-all duration-300;
+
+        &:hover {
+            @apply bg-white/10 border-white/20;
+            transform: translateY(-2px);
+        }
+    }
+
+    .product-icon {
+        @apply text-accent;
+    }
+
+    .product-label {
+        @apply text-sm font-medium text-white/80;
     }
 }
