@@ -9,56 +9,39 @@ export const post: APIRoute = async ({ request }) => {
     const email = body.email?.trim();
 
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
-      return new Response(JSON.stringify({
-        error: true,
-        message: "Ange en giltig e‑postadress."
-      }), { status: 400 });
+      return new Response(JSON.stringify({ error: true, message: "Ange en giltig e‑postadress." }), { status: 400 });
     }
 
-    // Call EmailOctopus API v2
-    const apiRes = await fetch(
-      `https://api.emailoctopus.com/lists/${LIST_ID}/contacts`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${API_KEY}`,
-        },
-        body: JSON.stringify({
-          email_address: email,
-          status: "subscribed"
-        }),
-      }
-    );
+    const res = await fetch(`https://api.emailoctopus.com/lists/${LIST_ID}/contacts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${API_KEY}`
+      },
+      body: JSON.stringify({
+        email_address: email,
+        status: 'subscribed',
+      }),
+    });
 
-    const json = await apiRes.json();
+    const data = await res.json();
 
-    // If contact already exists
-    if (json?.type === "https://emailoctopus.com/api-documentation/v2#already-exists") {
-      return new Response(JSON.stringify({
-        error: false,
-        message: "Du är redan prenumerant!",
-        alreadyExists: true,
-      }), { status: 200 });
+    if (res.status === 404) {
+      return new Response(JSON.stringify({ error: true, message: "Listan hittades inte. Kontrollera LIST_ID." }), { status: 404 });
     }
 
-    if (!apiRes.ok) {
-      return new Response(JSON.stringify({
-        error: true,
-        message: json.detail || "Något gick fel med registreringen."
-      }), { status: apiRes.status });
+    if (data?.type === "https://emailoctopus.com/api-documentation/v2#already-exists") {
+      return new Response(JSON.stringify({ error: false, message: "Du är redan prenumerant!" }), { status: 200 });
     }
 
-    return new Response(JSON.stringify({
-      success: true,
-      message: "Tack! Du är nu prenumerant 🎉",
-    }), { status: 200 });
+    if (!res.ok) {
+      return new Response(JSON.stringify({ error: true, message: data.detail || "Något gick fel med registreringen." }), { status: res.status });
+    }
+
+    return new Response(JSON.stringify({ success: true, message: "Tack! Du är nu prenumerant 🎉" }), { status: 200 });
 
   } catch (err) {
-    console.error("Subscribe error:", err);
-    return new Response(JSON.stringify({
-      error: true,
-      message: "Serverfel. Försök igen senare."
-    }), { status: 500 });
+    console.error(err);
+    return new Response(JSON.stringify({ error: true, message: "Serverfel. Försök igen senare." }), { status: 500 });
   }
 };
