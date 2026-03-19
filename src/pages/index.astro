@@ -12,102 +12,102 @@ import Layout from '../layouts/Layout.astro';
             Skandinavisk design för din bästa vän. Stilrena och hållbara hundaccessoarer — sele, koppel, halsband och flugor. Vi erbjuder unika lyxprodukter som tidigare saknats på den skandinaviska marknaden.
         </p>
 
-    <div class="product-card">
-        <div class="product-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
-                <path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/>
-            </svg>
+        <div class="product-cards-container mb-12">
+            <div class="product-card">
+                <div class="product-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
+                        <path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/>
+                    </svg>
+                </div>
+                <span class="product-label">Kvalitativa produkter</span>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </div>
+                <span class="product-label">Nära kundsupport</span>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                </div>
+                <span class="product-label">Snabb leverans</span>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
+                        <rect x="1" y="3" width="15" height="13" rx="2"/>
+                        <path d="M16 8h4l3 5v4h-7V8z"/>
+                        <circle cx="5.5" cy="18.5" r="2.5"/>
+                        <circle cx="18.5" cy="18.5" r="2.5"/>
+                    </svg>
+                </div>
+                <span class="product-label">Gratis frakt</span>
+            </div>
         </div>
-        <span class="product-label">Kvalitativa produkter</span>
-    </div>
 
-    <div class="product-card">
-        <div class="product-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
+        <div class="w-full max-w-md mb-8">
+            <p class="text-white/60 text-sm mb-4">Få reda på när vi lanserar</p>
+            <form id="notify-form" class="flex flex-col sm:flex-row gap-3">
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Din e-postadress"
+                    required
+                    class="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition"
+                />
+                <button type="submit" class="btn">Prenumerera</button>
+            </form>
+            <p class="text-white/60 text-sm mt-3 italic">Gå med 200+ hundägare som redan väntar!</p>
+            <p id="notify-success" class="text-green-400 mt-2 hidden"></p>
+            <p id="notify-error" class="text-red-400 mt-2 hidden"></p>
         </div>
-        <span class="product-label">Nära kundsupport</span>
-    </div>
-
-    <div class="product-card">
-        <div class="product-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
-            </svg>
-        </div>
-        <span class="product-label">Snabb leverans</span>
-    </div>
-
-    <div class="product-card">
-        <div class="product-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
-                <rect x="1" y="3" width="15" height="13" rx="2"/>
-                <path d="M16 8h4l3 5v4h-7V8z"/>
-                <circle cx="5.5" cy="18.5" r="2.5"/>
-                <circle cx="18.5" cy="18.5" r="2.5"/>
-            </svg>
-        </div>
-        <span class="product-label">Gratis frakt</span>
-    </div>
-
-</div>       
-
-<div class="w-full max-w-md mb-8">
-      <p class="text-white/60 text-sm mb-4">Få reda på när vi lanserar</p>
-      <form id="notify-form" class="flex flex-col sm:flex-row gap-3">
-        <input
-          type="email"
-          name="email"
-          placeholder="Din e-postadress"
-          required
-          class="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition"
-        />
-        <button type="submit" class="btn">Prenumerera</button>
-      </form>
-      <p class="text-white/60 text-sm mt-3 italic">Gå med 200+ hundägare som redan väntar!</p>
-      <p id="notify-success" class="text-green-400 mt-2 hidden"></p>
-      <p id="notify-error" class="text-red-400 mt-2 hidden"></p>
-    </div>
-  </section>
+    </section>
 </Layout>
 
 <script>
 document.getElementById("notify-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const emailInput = e.target.querySelector("input[name='email']");
-  const successMsg = document.getElementById("notify-success");
-  const errorMsg   = document.getElementById("notify-error");
+    const emailInput = e.target.querySelector("input[name='email']");
+    const successMsg = document.getElementById("notify-success");
+    const errorMsg   = document.getElementById("notify-error");
 
-  errorMsg.classList.add("hidden");
-  successMsg.classList.add("hidden");
+    errorMsg.classList.add("hidden");
+    successMsg.classList.add("hidden");
 
-  const email = emailInput.value.trim();
+    const email = emailInput.value.trim();
 
-  try {
-    const res = await fetch('/api/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
-    });
+    try {
+        const res = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+        });
 
-    const data = await res.json();
+        const data = await res.json();
 
-    if (data.error) {
-      errorMsg.textContent = data.message;
-      errorMsg.classList.remove("hidden");
-    } else {
-      successMsg.textContent = data.message;
-      successMsg.classList.remove("hidden");
-      emailInput.value = "";
+        if (data.error) {
+            errorMsg.textContent = data.message;
+            errorMsg.classList.remove("hidden");
+        } else {
+            successMsg.textContent = data.message;
+            successMsg.classList.remove("hidden");
+            emailInput.value = "";
+        }
+
+    } catch (err) {
+        console.error(err);
+        errorMsg.textContent = "Något gick fel, försök igen.";
+        errorMsg.classList.remove("hidden");
     }
-
-  } catch (err) {
-    console.error(err);
-    errorMsg.textContent = "Något gick fel, försök igen.";
-    errorMsg.classList.remove("hidden");
-  }
 });
 </script>
