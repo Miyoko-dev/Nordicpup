@@ -33,6 +33,10 @@
 
     const flags = { sv: '🇸🇪', da: '🇩🇰', no: '🇳🇴', en: '🇬🇧' };
 
+    // Set flag from localStorage on load
+    const saved = localStorage.getItem('lang') || 'sv';
+    currentFlag.textContent = flags[saved];
+
     btn.addEventListener('click', () => {
         dropdown.classList.toggle('hidden');
         chevron.style.transform = dropdown.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
@@ -49,15 +53,16 @@
         option.addEventListener('click', (e) => {
             e.preventDefault();
             const lang = option.dataset.lang;
+
+            // Update flag immediately right here
             currentFlag.textContent = flags[lang];
+
             dropdown.classList.add('hidden');
             chevron.style.transform = 'rotate(0deg)';
+
+            // Save and notify the rest of the page
+            localStorage.setItem('lang', lang);
             document.dispatchEvent(new CustomEvent('lang-change', { detail: { lang } }));
         });
     });
-
-    // Set saved language on load
-    const saved = localStorage.getItem('lang') || 'sv';
-    currentFlag.textContent = flags[saved];
-    document.dispatchEvent(new CustomEvent('lang-change', { detail: { lang: saved } }));
 </script>
