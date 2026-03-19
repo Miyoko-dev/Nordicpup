@@ -3,19 +3,22 @@
 <nav class="flex items-center justify-end pt-6 pb-4 sm:pt-12 sm:pb-8 relative">
     <div class="relative" id="lang-switcher">
         <button id="lang-btn" class="flex items-center gap-2 text-white/70 hover:text-white transition cursor-pointer">
-            <span class="text-2xl">🇸🇪</span>
+            <span class="text-2xl" id="current-flag">🇸🇪</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 transition-transform" id="lang-chevron">
                 <polyline points="6 9 12 15 18 9"/>
             </svg>
         </button>
         <div id="lang-dropdown" class="absolute right-0 mt-2 py-2 rounded-xl bg-complementary border border-white/10 shadow-xl hidden min-w-[160px]">
-            <a href="#" class="flex items-center gap-3 px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition">
+            <a href="#" class="lang-option flex items-center gap-3 px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition" data-lang="sv">
+                <span class="text-xl">🇸🇪</span> Svenska
+            </a>
+            <a href="#" class="lang-option flex items-center gap-3 px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition" data-lang="da">
                 <span class="text-xl">🇩🇰</span> Dansk
             </a>
-            <a href="#" class="flex items-center gap-3 px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition">
+            <a href="#" class="lang-option flex items-center gap-3 px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition" data-lang="no">
                 <span class="text-xl">🇳🇴</span> Norsk
             </a>
-            <a href="#" class="flex items-center gap-3 px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition">
+            <a href="#" class="lang-option flex items-center gap-3 px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition" data-lang="en">
                 <span class="text-xl">🇬🇧</span> English
             </a>
         </div>
@@ -26,6 +29,9 @@
     const btn = document.getElementById('lang-btn');
     const dropdown = document.getElementById('lang-dropdown');
     const chevron = document.getElementById('lang-chevron');
+    const currentFlag = document.getElementById('current-flag');
+
+    const flags = { sv: '🇸🇪', da: '🇩🇰', no: '🇳🇴', en: '🇬🇧' };
 
     btn.addEventListener('click', () => {
         dropdown.classList.toggle('hidden');
@@ -38,4 +44,20 @@
             chevron.style.transform = 'rotate(0deg)';
         }
     });
+
+    document.querySelectorAll('.lang-option').forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.preventDefault();
+            const lang = option.dataset.lang;
+            currentFlag.textContent = flags[lang];
+            dropdown.classList.add('hidden');
+            chevron.style.transform = 'rotate(0deg)';
+            document.dispatchEvent(new CustomEvent('lang-change', { detail: { lang } }));
+        });
+    });
+
+    // Set saved language on load
+    const saved = localStorage.getItem('lang') || 'sv';
+    currentFlag.textContent = flags[saved];
+    document.dispatchEvent(new CustomEvent('lang-change', { detail: { lang: saved } }));
 </script>
