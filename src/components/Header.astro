@@ -1,25 +1,31 @@
 ---
 ---
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.2.3/css/flag-icons.min.css" />
+
 <nav class="flex items-center justify-end pt-6 pb-4 sm:pt-12 sm:pb-8 relative">
     <div class="relative" id="lang-switcher">
         <button id="lang-btn" class="flex items-center gap-2 text-white/70 hover:text-white transition cursor-pointer">
-            <span class="text-2xl" id="current-flag">🇸🇪</span>
+            <span class="fi fi-se fis lang-flag" id="current-flag" style="width:28px;height:28px;border-radius:50%;background-size:cover;display:inline-block;"></span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 transition-transform" id="lang-chevron">
                 <polyline points="6 9 12 15 18 9"/>
             </svg>
         </button>
-        <div id="lang-dropdown" class="absolute right-0 mt-2 py-2 rounded-xl bg-complementary border border-white/10 shadow-xl hidden min-w-[160px]">
-            <a href="#" class="lang-option flex items-center gap-3 px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition" data-lang="sv">
-                <span class="text-xl">🇸🇪</span> Svenska
+        <div id="lang-dropdown" class="absolute right-0 mt-2 py-2 rounded-xl bg-complementary border border-white/10 shadow-xl hidden min-w-[180px]">
+            <a href="#" class="lang-option flex items-center gap-3 px-4 py-2.5 text-sm text-white/70 hover:text-white hover:bg-white/5 transition" data-lang="sv" data-flag="se">
+                <span class="fi fi-se fis" style="width:24px;height:24px;border-radius:50%;background-size:cover;display:inline-block;flex-shrink:0;"></span>
+                Svenska
             </a>
-            <a href="#" class="lang-option flex items-center gap-3 px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition" data-lang="da">
-                <span class="text-xl">🇩🇰</span> Dansk
+            <a href="#" class="lang-option flex items-center gap-3 px-4 py-2.5 text-sm text-white/70 hover:text-white hover:bg-white/5 transition" data-lang="da" data-flag="dk">
+                <span class="fi fi-dk fis" style="width:24px;height:24px;border-radius:50%;background-size:cover;display:inline-block;flex-shrink:0;"></span>
+                Dansk
             </a>
-            <a href="#" class="lang-option flex items-center gap-3 px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition" data-lang="no">
-                <span class="text-xl">🇳🇴</span> Norsk
+            <a href="#" class="lang-option flex items-center gap-3 px-4 py-2.5 text-sm text-white/70 hover:text-white hover:bg-white/5 transition" data-lang="no" data-flag="no">
+                <span class="fi fi-no fis" style="width:24px;height:24px;border-radius:50%;background-size:cover;display:inline-block;flex-shrink:0;"></span>
+                Norsk
             </a>
-            <a href="#" class="lang-option flex items-center gap-3 px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition" data-lang="en">
-                <span class="text-xl">🇬🇧</span> English
+            <a href="#" class="lang-option flex items-center gap-3 px-4 py-2.5 text-sm text-white/70 hover:text-white hover:bg-white/5 transition" data-lang="en" data-flag="gb">
+                <span class="fi fi-gb fis" style="width:24px;height:24px;border-radius:50%;background-size:cover;display:inline-block;flex-shrink:0;"></span>
+                English
             </a>
         </div>
     </div>
@@ -31,11 +37,16 @@
     const chevron = document.getElementById('lang-chevron');
     const currentFlag = document.getElementById('current-flag');
 
-    const flags = { sv: '🇸🇪', da: '🇩🇰', no: '🇳🇴', en: '🇬🇧' };
+    const flagMap = { sv: 'se', da: 'dk', no: 'no', en: 'gb' };
 
-    // Set flag from localStorage on load
+    function setFlag(lang) {
+        const code = flagMap[lang];
+        currentFlag.className = `fi fi-${code} fis lang-flag`;
+        currentFlag.style.cssText = 'width:28px;height:28px;border-radius:50%;background-size:cover;display:inline-block;';
+    }
+
     const saved = localStorage.getItem('lang') || 'sv';
-    currentFlag.textContent = flags[saved];
+    setFlag(saved);
 
     btn.addEventListener('click', () => {
         dropdown.classList.toggle('hidden');
@@ -54,13 +65,11 @@
             e.preventDefault();
             const lang = option.dataset.lang;
 
-            // Update flag immediately right here
-            currentFlag.textContent = flags[lang];
+            setFlag(lang);
 
             dropdown.classList.add('hidden');
             chevron.style.transform = 'rotate(0deg)';
 
-            // Save and notify the rest of the page
             localStorage.setItem('lang', lang);
             document.dispatchEvent(new CustomEvent('lang-change', { detail: { lang } }));
         });
