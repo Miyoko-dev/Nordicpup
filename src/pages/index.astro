@@ -4,13 +4,8 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Nordicpup - Kommer Snart">
     <section class="flex flex-col items-center justify-center text-center py-12 sm:py-20">
-        <p class="uppercase tracking-[0.3em] text-accent text-sm font-medium mb-6">Kommer snart</p>
-        <h1 class="mb-6">
-            <img src="/nordicpup_logo.png" alt="Nordicpup Logo" class="h-16 sm:h-24">
-        </h1>
-        <p class="text-lg sm:text-xl text-white/70 max-w-2xl mb-12 leading-relaxed">
-            Skandinavisk design för din bästa vän. Stilrena och hållbara hundaccessoarer — sele, koppel, halsband och flugor. Vi erbjuder unika lyxprodukter som tidigare saknats på den skandinaviska marknaden.
-        </p>
+        <p class="uppercase tracking-[0.3em] text-accent text-sm font-medium mb-6" data-i18n="coming_soon"></p>
+        <p class="text-lg sm:text-xl text-white/70 max-w-2xl mb-12 leading-relaxed" data-i18n="description"></p>
 
         <div class="product-cards-container mb-12">
             <div class="product-card">
@@ -19,7 +14,7 @@ import Layout from '../layouts/Layout.astro';
                         <path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/>
                     </svg>
                 </div>
-                <span class="product-label">Kvalitativa produkter</span>
+                <span class="product-label" data-i18n="quality"></span>
             </div>
 
             <div class="product-card">
@@ -28,7 +23,7 @@ import Layout from '../layouts/Layout.astro';
                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                     </svg>
                 </div>
-                <span class="product-label">Nära kundsupport</span>
+                <span class="product-label" data-i18n="support"></span>
             </div>
 
             <div class="product-card">
@@ -38,7 +33,7 @@ import Layout from '../layouts/Layout.astro';
                         <polyline points="12 6 12 12 16 14"/>
                     </svg>
                 </div>
-                <span class="product-label">Snabb leverans</span>
+                <span class="product-label" data-i18n="delivery"></span>
             </div>
 
             <div class="product-card">
@@ -50,28 +45,99 @@ import Layout from '../layouts/Layout.astro';
                         <circle cx="18.5" cy="18.5" r="2.5"/>
                     </svg>
                 </div>
-                <span class="product-label">Gratis frakt</span>
+                <span class="product-label" data-i18n="shipping"></span>
             </div>
         </div>
 
         <div class="w-full max-w-md mb-8">
-            <p class="text-white/60 text-sm mb-4">Få reda på när vi lanserar</p>
+            <p class="text-white/60 text-sm mb-4" data-i18n="notify_text"></p>
             <form id="notify-form" class="flex flex-col sm:flex-row gap-3">
                 <input
                     type="email"
                     name="email"
-                    placeholder="Din e-postadress"
+                    data-i18n-placeholder="email_placeholder"
                     required
                     class="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition"
                 />
-                <button type="submit" class="btn">Prenumerera</button>
+                <button type="submit" class="btn" data-i18n="subscribe"></button>
             </form>
-            <p class="text-white/60 text-sm mt-3 italic">Gå med 200+ hundägare som redan väntar!</p>
+            <p class="text-white/60 text-sm mt-3 italic" data-i18n="social_proof"></p>
             <p id="notify-success" class="text-green-400 mt-2 hidden"></p>
             <p id="notify-error" class="text-red-400 mt-2 hidden"></p>
         </div>
     </section>
 </Layout>
+
+<script>
+const translations = {
+    sv: {
+        coming_soon: 'Kommer snart',
+        description: 'Skandinavisk design för din bästa vän. Stilrena och hållbara hundaccessoarer — sele, koppel, halsband och flugor. Vi erbjuder unika lyxprodukter som tidigare saknats på den skandinaviska marknaden.',
+        quality: 'Kvalitativa produkter',
+        support: 'Nära kundsupport',
+        delivery: 'Snabb leverans',
+        shipping: 'Gratis frakt',
+        notify_text: 'Få reda på när vi lanserar',
+        email_placeholder: 'Din e-postadress',
+        subscribe: 'Prenumerera',
+        social_proof: 'Gå med 200+ hundägare som redan väntar!',
+    },
+    da: {
+        coming_soon: 'Kommer snart',
+        description: 'Skandinavisk design til din bedste ven. Enkle og holdbare hundetilbehør — sele, snor, halsbånd og butterfly. Vi tilbyder unikke luksusvarer, der tidligere har manglet på det skandinaviske marked.',
+        quality: 'Kvalitetsprodukter',
+        support: 'Tæt kundesupport',
+        delivery: 'Hurtig levering',
+        shipping: 'Gratis fragt',
+        notify_text: 'Få besked, når vi lancerer',
+        email_placeholder: 'Din e-mailadresse',
+        subscribe: 'Tilmeld',
+        social_proof: 'Slut dig til 200+ hundeejere, der allerede venter!',
+    },
+    no: {
+        coming_soon: 'Kommer snart',
+        description: 'Skandinavisk design for din beste venn. Rene og holdbare hundetilbehør — sele, kobbel, halsbånd og sløyfer. Vi tilbyr unike luksusvarer som tidligere har manglet i det skandinaviske markedet.',
+        quality: 'Kvalitetsprodukter',
+        support: 'Nær kundestøtte',
+        delivery: 'Rask levering',
+        shipping: 'Gratis frakt',
+        notify_text: 'Få vite når vi lanserer',
+        email_placeholder: 'Din e-postadresse',
+        subscribe: 'Abonner',
+        social_proof: 'Bli med 200+ hundeeiere som allerede venter!',
+    },
+    en: {
+        coming_soon: 'Coming soon',
+        description: 'Scandinavian design for your best friend. Clean and durable dog accessories — harnesses, leashes, collars and bow ties. We offer unique luxury products previously missing from the Scandinavian market.',
+        quality: 'Quality products',
+        support: 'Close customer support',
+        delivery: 'Fast delivery',
+        shipping: 'Free shipping',
+        notify_text: 'Get notified when we launch',
+        email_placeholder: 'Your email address',
+        subscribe: 'Subscribe',
+        social_proof: 'Join 200+ dog owners already waiting!',
+    }
+};
+
+function applyLang(lang) {
+    localStorage.setItem('lang', lang);
+    const t = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (t[key]) el.textContent = t[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.dataset.i18nPlaceholder;
+        if (t[key]) el.placeholder = t[key];
+    });
+}
+
+document.addEventListener('lang-change', (e) => applyLang(e.detail.lang));
+
+// Apply on first load
+applyLang(localStorage.getItem('lang') || 'sv');
+</script>
 
 <script>
 document.getElementById("notify-form").addEventListener("submit", async (e) => {
